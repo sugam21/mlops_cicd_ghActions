@@ -16,7 +16,7 @@ config: dict[str, any] = {
 }
 
 ## Loading the Data
-drug_df = pd.read_csv(r"Data\drug.csv")
+drug_df = pd.read_csv(r"Data/drug.csv")
 drug_df = drug_df.sample(frac=1)
 
 ## Train Test Split
@@ -75,11 +75,11 @@ predictions = pipe.predict(X_test)
 cm = confusion_matrix(y_test, predictions, labels=pipe.classes_)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=pipe.classes_)
 disp.plot()
-plt.savefig("Results\model_results.png", dpi=200)
+plt.savefig("Results/model_results.png", dpi=200)
 
 ## Write metrics to file
-with open("Results\metrics.txt", "w") as outfile:
+with open("Results/metrics.txt", "w") as outfile:
     outfile.write(f"\nAccuracy = {round(accuracy, 2)}, F1 Score = {round(f1, 2)}")
 
 ## Saving the model file
-sio.dump(pipe, "Model\drug_pipeline.skops")
+sio.dump(pipe, "Model/drug_pipeline.skops")
